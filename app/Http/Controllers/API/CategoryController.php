@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         // On récupère tous les utilisateurs
-        $categories = Category::all();
+        $categories = Category::with('plants')->get();
 
         // On retourne les informations des utilisateurs en JSON
         return response()->json($categories);

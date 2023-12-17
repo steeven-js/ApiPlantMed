@@ -8,22 +8,21 @@ use Illuminate\Http\Request;
 
 class PlantController extends Controller
 {
-    //
     public function index()
     {
-        // On récupère tous les utilisateurs
+        // On récupère tous les plants
         $plants = Plant::all();
 
-        // On retourne les informations des utilisateurs en JSON
+        // On retourne les informations des plants en JSON
         return response()->json($plants);
     }
 
     public function show(Plant $plant)
     {
-        // Je récupère la catégorie avec ses plantes
-        $plant = Plant::find($plant->id);
+        // Je récupère le plant avec ses informations
+        $plant = Plant::with('infos', 'proprietes', 'utilisations', 'precautions')->find($plant->id);
 
-        // Je retourne la catégorie en JSON
+        // Je retourne le plant en JSON
         return response()->json($plant);
     }
 }

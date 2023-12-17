@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\PlantController;
 use App\Http\Controllers\API\CategoryController;
 
 /*
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
 Route::apiResource("categories", CategoryController::class);
+Route::apiResource("plants", PlantController::class);

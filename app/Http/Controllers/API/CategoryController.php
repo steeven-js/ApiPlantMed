@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         // On récupère tous les utilisateurs
-        $categories = Category::all();
+        $categories = Category::with('plants')->get();
 
         // On retourne les informations des utilisateurs en JSON
         return response()->json($categories);
@@ -33,7 +33,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        // Je récupère la catégorie avec ses plantes
+        $category = Category::with('plants')->find($category->id);
+
+        // Je retourne la catégorie en JSON
+        return response()->json($category);
     }
 
     /**

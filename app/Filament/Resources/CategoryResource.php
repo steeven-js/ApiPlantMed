@@ -44,11 +44,6 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('position')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\IconColumn::make('is_visible')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

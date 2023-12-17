@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             UserSeeder::class,
             PlantSeeder::class,
+            InfoSeeder::class,
+            PrecautionSeeder::class,
+            UtilisationSeeder::class,
+            ProprieteSeeder::class,
         ]);
     }
 }

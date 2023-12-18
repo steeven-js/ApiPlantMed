@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Info;
-use App\Models\Category;
-use App\Models\Propriete;
-use App\Models\Precaution;
-use App\Models\Utilisation;
+use App\Models\PlantPropriete;
+use App\Models\PlantPrecaution;
+use App\Models\PlantUtilisation;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Plant extends Model
@@ -16,9 +14,8 @@ class Plant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_id',
         'name',
-        'slug',
+        'category_id',
     ];
 
     public function category()
@@ -26,23 +23,18 @@ class Plant extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function infos()
+    public function plantProprietes(): HasMany
     {
-        return $this->hasOne(Info::class);
+        return $this->hasMany(PlantPropriete::class, 'plant_id');
     }
 
-    public function proprietes()
+    public function plantUtilisations(): HasMany
     {
-        return $this->hasOne(Propriete::class);
+        return $this->hasMany(PlantUtilisation::class, 'plant_id');
     }
 
-    public function utilisations(): HasOne
+    public function plantPrecautions(): HasMany
     {
-        return $this->hasOne(Utilisation::class);
-    }
-
-    public function precautions()
-    {
-        return $this->hasOne(Precaution::class);
+        return $this->hasMany(PlantPrecaution::class, 'plant_id');
     }
 }

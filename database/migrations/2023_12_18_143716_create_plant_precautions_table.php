@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('utilisations', function (Blueprint $table) {
+        Schema::create('plant_precautions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plant_id')->references('id')->on('plants')->onDelete('cascade');
-            $table->longText('interne');
-            $table->longText('externe');
+            $table->foreignId('plant_id')->references('id')->on('plants'); // Corrected line
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('utilisations');
+        Schema::dropIfExists('plant_precautions');
     }
 };

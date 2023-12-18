@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proprietes', function (Blueprint $table) {
+        Schema::create('plant_utilisations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plant_id')->references('id')->on('plants')->onDelete('cascade');
-            $table->longText('propriete');
+            $table->foreignId('plant_id')->references('id')->on('plants');
+            $table->enum('type', ['interne', 'externe'])->default('interne');
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proprietes');
+        Schema::dropIfExists('plant_utilisations');
     }
 };

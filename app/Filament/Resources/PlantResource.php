@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PlantRessourceResource\RelationManagers\PlantProprietesRelationManager;
+use App\Filament\Resources\PlantRessourceResource\RelationManagers\PlantProprieteResource;
+use App\Filament\Resources\PlantRessourceResource\RelationManagers\PlantUtilisationResource;
 
 class PlantResource extends Resource
 {
@@ -81,6 +84,9 @@ class PlantResource extends Resource
     {
         return [
             //
+            PlantPrecautionsRelationManager::class,
+            PlantProprieteResource::class,
+            PlantUtilisationResource::class,
         ];
     }
 

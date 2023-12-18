@@ -16,7 +16,7 @@ class Utilisation extends Model
         'externe',
     ];
 
-    public function plant()
+    public function plant(): BelongsTo
     {
         return $this->belongsTo(Plant::class);
     }

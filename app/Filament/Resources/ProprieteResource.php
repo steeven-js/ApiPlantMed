@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\ProprieteResource\Pages;
+use App\Filament\Resources\ProprieteResource\RelationManagers;
+use App\Models\Propriete;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,40 +13,34 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class ProprieteResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Propriete::class;
 
-    protected static ?string $navigationLabel = 'Symptômes';
+    protected static ?string $navigationLabel = 'Propriétés';
 
-    protected static ?string $slug = 'monRemède/symptomes';
+    protected static ?string $slug = 'monRemède/proprietes';
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $modelLabel = 'Symptômes';
+    protected static ?string $modelLabel = 'Propriétés';
 
     protected static ?string $navigationGroup = 'monRemède';
 
     protected static ?string $navigationIcon = 'heroicon-o-bolt';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('plant_id')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
+                    ->numeric(),
+                Forms\Components\RichEditor::make('propriete')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('position')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\Toggle::make('is_visible')
-                    ->required(),
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -54,10 +48,9 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\IconColumn::make('is_visible')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('plant.name')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -90,9 +83,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListProprietes::route('/'),
+            'create' => Pages\CreatePropriete::route('/create'),
+            'edit' => Pages\EditPropriete::route('/{record}/edit'),
         ];
     }
 }

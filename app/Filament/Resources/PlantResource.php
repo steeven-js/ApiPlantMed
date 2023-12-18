@@ -17,7 +17,19 @@ class PlantResource extends Resource
 {
     protected static ?string $model = Plant::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Plantes';
+
+    protected static ?string $slug = 'monRemède/plantes';
+
+    protected static ?string $recordTitleAttribute = 'name';
+
+    protected static ?string $modelLabel = 'Plantes';
+
+    protected static ?string $navigationGroup = 'monRemède';
+
+    protected static ?string $navigationIcon = 'heroicon-o-bolt';
+
+    protected static ?int $navigationSort = 0;
 
     public static function form(Form $form): Form
     {

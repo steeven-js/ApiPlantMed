@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\InfoResource\Pages;
+use App\Filament\Resources\InfoResource\RelationManagers;
+use App\Models\Info;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,40 +13,49 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class InfoResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Info::class;
 
-    protected static ?string $navigationLabel = 'Symptômes';
+    protected static ?string $navigationLabel = 'Infos';
 
-    protected static ?string $slug = 'monRemède/symptomes';
+    protected static ?string $slug = 'monRemède/infos';
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $modelLabel = 'Symptômes';
+    protected static ?string $modelLabel = 'Infos';
 
     protected static ?string $navigationGroup = 'monRemède';
 
     protected static ?string $navigationIcon = 'heroicon-o-bolt';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('plant_id')
+                    ->required()
+                    ->numeric(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
+                Forms\Components\TextInput::make('nscient')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('position')
+                Forms\Components\TextInput::make('famille')
                     ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\Toggle::make('is_visible')
-                    ->required(),
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('genre')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\Textarea::make('habitat')
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -54,10 +63,17 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('plant.name')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('is_visible')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('nscient')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('famille')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('genre')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -90,9 +106,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListInfos::route('/'),
+            'create' => Pages\CreateInfo::route('/create'),
+            'edit' => Pages\EditInfo::route('/{record}/edit'),
         ];
     }
 }

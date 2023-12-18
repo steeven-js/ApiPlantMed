@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Category;
 use App\Models\Info;
+use App\Models\Category;
 use App\Models\Propriete;
 use App\Models\Precaution;
 use App\Models\Utilisation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Plant extends Model
@@ -35,7 +36,7 @@ class Plant extends Model
         return $this->hasOne(Propriete::class);
     }
 
-    public function utilisations()
+    public function utilisations(): HasOne
     {
         return $this->hasOne(Utilisation::class);
     }

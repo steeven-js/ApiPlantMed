@@ -29,6 +29,8 @@ class InfoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-bolt';
 
+    protected static ?string $navigationParentItem = 'Plantes';
+
     protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form

@@ -33,12 +33,13 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        // Je récupère la catégorie avec ses plantes
-        $category = Category::with('plants')->find($category->id);
+        // Je récupère la catégorie avec ses plantes et le nombre de plantes
+        $categoryWithPlants = Category::with('plants')->withCount('plants')->find($category->id);
 
-        // Je retourne la catégorie en JSON
-        return response()->json($category);
+        // Je retourne la catégorie avec le nombre de plantes en JSON
+        return response()->json($categoryWithPlants);
     }
+
 
     /**
      * Update the specified resource in storage.

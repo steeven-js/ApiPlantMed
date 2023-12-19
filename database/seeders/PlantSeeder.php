@@ -115,7 +115,7 @@ class PlantSeeder extends Seeder
             for ($i = 0; $i < 3; $i++) {
                 \App\Models\PlantPrecaution::create([
                     'plant_id' => $plant['id'],
-                    'value' => $precautions[$i],
+                    'value' => $plant['name'] . ' ' . $precautions[$i],
                 ]);
             }
 
@@ -123,16 +123,16 @@ class PlantSeeder extends Seeder
             for ($i = 0; $i < 3; $i++) {
                 \App\Models\PlantPropriete::create([
                     'plant_id' => $plant['id'],
-                    'value' => $proprietes[$i],
+                    'value' => $plant['name'] . ' ' . $proprietes[$i],
                 ]);
             }
 
-            // Création de 2 usages pour chaque plante
-            for ($i = 0; $i < 2; $i++) {
+            // Création de 2 usages interne et 2 usages externe pour chaque plante
+            foreach ($usages as $usage) {
                 \App\Models\PlantUtilisation::create([
                     'plant_id' => $plant['id'],
-                    'type' => $usages[$i]['type'],
-                    'value' => $usages[$i]['value'],
+                    'type' => $usage['type'],
+                    'value' => $plant['name'] . ' ' . $usage['value'],
                 ]);
             }
         }

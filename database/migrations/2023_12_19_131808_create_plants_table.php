@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')
                 ->unique();
+            $table->string('nscient')->nullable();
+            $table->string('famille')->nullable();
+            $table->string('genre')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('habitat')->nullable();
             $table->timestamps();
         });
     }

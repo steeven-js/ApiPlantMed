@@ -24,25 +24,51 @@ class PlantResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
-                        if ($operation !== 'create' && $operation !== 'edit') {
-                            return;
-                        }
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Section::make('Informations')
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
+                                        if ($operation !== 'create' && $operation !== 'edit') {
+                                            return;
+                                        }
 
-                        $set('slug', Str::slug($state));
-                    }),
+                                        $set('slug', Str::slug($state));
+                                    }),
 
-                Forms\Components\TextInput::make('slug')
-                    ->disabled()
-                    ->dehydrated()
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(Plant::class, 'slug', ignoreRecord: true),
-            ]);
+                                Forms\Components\TextInput::make('slug')
+                                    ->disabled()
+                                    ->dehydrated()
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->unique(Plant::class, 'slug', ignoreRecord: true),
+
+
+                                Forms\Components\Textarea::make('description')
+                                    ->rows(10)
+                                    ->cols(20),
+                            ])
+                    ])
+                    ->columnSpan(['lg' => 2]),
+
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Section::make('Information scientifiques')
+                            ->schema([
+                                Forms\Components\TextInput::make('nscient'),
+                                Forms\Components\TextInput::make('famille'),
+                                Forms\Components\TextInput::make('genre'),
+                                Forms\Components\Textarea::make('habitat'),
+                            ]),
+
+                    ])
+                    ->columnSpan(['lg' => 1]),
+            ])
+            ->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -79,6 +105,8 @@ class PlantResource extends Resource
     {
         return [
             RelationManagers\ProprietesRelationManager::class,
+            RelationManagers\PrecautionsRelationManager::class,
+            RelationManagers\UtilisationsRelationManager::class,
         ];
     }
 

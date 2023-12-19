@@ -23,7 +23,12 @@ class PlantProprieteResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('plant.name')
+                    ->label('Plante')
+                    ->required(),
+                Forms\Components\TextInput::make('value')
+                    ->required()
+                    ->maxLength(191),
             ]);
     }
 
@@ -31,7 +36,22 @@ class PlantProprieteResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('plant.id')
+                    ->label('Id plante')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('plant.name')
+                    ->label('Plante')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('value')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

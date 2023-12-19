@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plant_precautions', function (Blueprint $table) {
+        Schema::create('plants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plant_id')->references('id')->on('plants'); // Corrected line
-            $table->string('value');
+            $table->string('name');
+            $table->string('slug')
+                ->unique();
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plant_precautions');
+        Schema::dropIfExists('plants');
     }
 };

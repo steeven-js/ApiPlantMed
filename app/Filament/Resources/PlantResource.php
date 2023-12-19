@@ -2,51 +2,46 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PlantResource\Pages;
-use App\Filament\Resources\PlantResource\RelationManagers;
-use App\Models\Plant;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Plant;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PlantResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PlantRessourceResource\RelationManagers\PlantProprietesRelationManager;
-use App\Filament\Resources\PlantRessourceResource\RelationManagers\PlantProprieteResource;
-use App\Filament\Resources\PlantRessourceResource\RelationManagers\PlantUtilisationResource;
+use App\Filament\Resources\PlantResource\RelationManagers;
 
 class PlantResource extends Resource
 {
     protected static ?string $model = Plant::class;
 
-    protected static ?string $navigationLabel = 'Plantes';
-
-    protected static ?string $slug = 'monRemède/plantes';
-
-    protected static ?string $recordTitleAttribute = 'name';
-
-    protected static ?string $modelLabel = 'Plantes';
-
-    protected static ?string $navigationGroup = 'monRemède';
-
-    protected static ?string $navigationIcon = 'heroicon-o-bolt';
-
-    protected static ?int $navigationSort = 0;
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category_id')
-                    ->required()
-                    ->numeric(),
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
+                        if ($operation !== 'create' && $operation !== 'edit') {
+                            return;
+                        }
+
+                        $set('slug', Str::slug($state));
+                    }),
+
                 Forms\Components\TextInput::make('slug')
+                    ->disabled()
+                    ->dehydrated()
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->unique(Plant::class, 'slug', ignoreRecord: true),
             ]);
     }
 
@@ -54,9 +49,9 @@ class PlantResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category.name')
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -83,10 +78,7 @@ class PlantResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-            PlantPrecautionsRelationManager::class,
-            PlantProprieteResource::class,
-            PlantUtilisationResource::class,
+            RelationManagers\ProprietesRelationManager::class,
         ];
     }
 

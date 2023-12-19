@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Plant;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PlantPropriete extends Model
@@ -16,7 +15,7 @@ class PlantPropriete extends Model
         'value',
     ];
 
-    public function plant(): BelongsTo
+    public function plant()
     {
         return $this->belongsTo(Plant::class);
     }

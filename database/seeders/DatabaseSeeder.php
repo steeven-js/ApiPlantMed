@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PlantSeeder::class,
             SymptomeSeeder::class,
+            SymptomePlantSeeder::class,
         ]);
     }
 }

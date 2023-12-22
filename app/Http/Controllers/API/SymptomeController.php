@@ -10,7 +10,7 @@ class SymptomeController extends Controller
 {
     public function index()
     {
-        $symptomes = Symptome::with('plants')->get(10);
+        $symptomes = Symptome::with('plants')->get();
 
         return response()->json($symptomes);
     }

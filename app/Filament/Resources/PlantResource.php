@@ -47,13 +47,13 @@ class PlantResource extends Resource
                                     ->maxLength(255)
                                     ->unique(Plant::class, 'slug', ignoreRecord: true),
 
-                                Forms\Components\Textarea::make('habitat')
-                                    ->rows(5)
-                                    ->cols(10),
-
                                 Forms\Components\Textarea::make('description')
                                     ->rows(10)
                                     ->cols(20),
+
+                                Forms\Components\Textarea::make('habitat')
+                                    ->rows(5)
+                                    ->cols(10),
                             ])
                     ])
                     ->columnSpan(['lg' => 2]),

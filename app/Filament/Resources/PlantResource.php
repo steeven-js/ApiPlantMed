@@ -48,7 +48,7 @@ class PlantResource extends Resource
                                     ->unique(Plant::class, 'slug', ignoreRecord: true),
 
                                 Forms\Components\Textarea::make('habitat')
-                                    ->rows(10)
+                                    ->rows(5)
                                     ->cols(10),
 
                                 Forms\Components\Textarea::make('description')

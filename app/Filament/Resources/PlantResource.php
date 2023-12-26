@@ -47,6 +47,9 @@ class PlantResource extends Resource
                                     ->maxLength(255)
                                     ->unique(Plant::class, 'slug', ignoreRecord: true),
 
+                                Forms\Components\Textarea::make('habitat')
+                                    ->rows(10)
+                                    ->cols(10),
 
                                 Forms\Components\Textarea::make('description')
                                     ->rows(10)
@@ -62,7 +65,6 @@ class PlantResource extends Resource
                                 Forms\Components\TextInput::make('nscient'),
                                 Forms\Components\TextInput::make('famille'),
                                 Forms\Components\TextInput::make('genre'),
-                                Forms\Components\Textarea::make('habitat'),
                             ]),
 
                     ])

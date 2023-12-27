@@ -20,7 +20,7 @@ class PlantController extends Controller
     public function show(Plant $plant)
     {
         // Je récupère le plant avec ses informations
-        $plant = Plant::with('proprietes', 'precautions', 'utilisations', 'precautions')->find($plant->id);
+        $plant = Plant::with('proprietes', 'precautions', 'utilisations', 'precautions', 'media')->find($plant->id);
 
         // Je retourne le plant en JSON
         return response()->json($plant);

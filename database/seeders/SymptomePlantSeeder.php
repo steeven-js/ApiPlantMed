@@ -21,7 +21,8 @@ class SymptomePlantSeeder extends Seeder
         // Seed SymptomePlant table
         foreach ($plants as $plant) {
             // Get a random number of symptoms to associate with each plant
-            $randomSymptoms = $symptomes->random(rand(1, $symptomes->count()));
+            $randomNumberOfSymptoms = rand(1, 15);
+            $randomSymptoms = $symptomes->random($randomNumberOfSymptoms);
 
             // Associate each random symptom with the current plant
             foreach ($randomSymptoms as $symptome) {

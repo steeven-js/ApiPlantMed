@@ -76,6 +76,11 @@ class PlantResource extends Resource
                                 Forms\Components\TextInput::make('nscient'),
                                 Forms\Components\TextInput::make('famille'),
                                 Forms\Components\TextInput::make('genre'),
+
+                                Forms\Components\Select::make('symptomes')
+                                ->relationship('symptomes', 'name')
+                                ->multiple()
+                                ->required(),
                             ]),
 
                     ])
@@ -88,11 +93,18 @@ class PlantResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->searchable(),
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('plant-image')
                     ->label('Image')
                     ->collection('plant-images'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('symptomes.name')
+                    ->label('Symptomes')
+                    ->listWithLineBreaks()
+                    ->limitList(2)
+                    ->expandableLimitedList(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

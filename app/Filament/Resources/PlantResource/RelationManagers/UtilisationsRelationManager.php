@@ -19,6 +19,7 @@ class UtilisationsRelationManager extends RelationManager
         return $form
             ->schema([
                 Forms\Components\TextInput::make('value')
+                    ->label('Utilisation')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('type')
@@ -34,9 +35,11 @@ class UtilisationsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('value')
             ->columns([
-                Tables\Columns\TextColumn::make('value'),
+                Tables\Columns\TextColumn::make('value')
+                ->label('Utilisation')
+                ->limit(80),
                 Tables\Columns\TextColumn::make('type')
-                ->label('Usage'),
+                    ->label('Usage'),
             ])
             ->filters([
                 //

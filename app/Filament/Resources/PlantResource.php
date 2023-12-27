@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PlantResource\Pages;
-use Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PlantResource\RelationManagers;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -89,9 +88,9 @@ class PlantResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('plant-image')
-                ->label('Image')
-                ->collection('plant-images'),
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('plant-image')
+                    ->label('Image')
+                    ->collection('plant-images'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

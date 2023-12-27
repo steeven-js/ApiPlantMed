@@ -18,10 +18,11 @@ class PrecautionsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('value')
+                Forms\Components\Textarea::make('value')
+                    ->label('Précaution')
                     ->required()
                     ->maxLength(255),
-            ]);
+            ])->columns(1);
     }
 
     public function table(Table $table): Table
@@ -29,7 +30,8 @@ class PrecautionsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('value')
             ->columns([
-                Tables\Columns\TextColumn::make('value'),
+                Tables\Columns\TextColumn::make('value')
+                ->label('Précaution'),
             ])
             ->filters([
                 //

@@ -19,7 +19,15 @@ class PlantResource extends Resource
 {
     protected static ?string $model = Plant::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-heart';
+
+    protected static ?string $navigationLabel = 'Plantes médicinales';
+
+    protected static ?string $modelLabel = 'Plantes médicinales';
+
+    protected static ?string $navigationGroup = 'Application';
+
+    protected static ?int $navigationSort = 0;
 
     public static function form(Form $form): Form
     {
@@ -55,7 +63,8 @@ class PlantResource extends Resource
                                 Forms\Components\Textarea::make('habitat')
                                     ->rows(5)
                                     ->cols(10),
-                            ]),
+                            ])
+                            ->description('Informations générales sur la plante'),
 
                         Forms\Components\Section::make('Images')
                             ->schema([
@@ -65,7 +74,7 @@ class PlantResource extends Resource
                                     ->maxFiles(5)
                                     ->hiddenLabel(),
                             ])
-                            ->collapsible(),
+                            ->collapsible()
                     ])
                     ->columnSpan(['lg' => 2]),
 
@@ -81,7 +90,8 @@ class PlantResource extends Resource
                                 ->relationship('symptomes', 'name')
                                 ->multiple()
                                 ->required(),
-                            ]),
+                            ])
+                            ->description('Informations scientifiques sur la plante'),
 
                     ])
                     ->columnSpan(['lg' => 1]),
@@ -124,7 +134,8 @@ class PlantResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->description('Les plantes médicinales sont des plantes utilisées pour leurs propriétés thérapeutiques, qu\'elles soient utilisées sous forme de tisanes, de décoctions, de teintures, de gélules, d\'extraits, etc. Elles peuvent être utilisées seules ou en association avec d\'autres plantes. Elles sont utilisées pour leurs propriétés médicinales, mais aussi pour leurs propriétés aromatiques et gustatives.');
     }
 
     public static function getRelations(): array
@@ -143,5 +154,10 @@ class PlantResource extends Resource
             'create' => Pages\CreatePlant::route('/create'),
             'edit' => Pages\EditPlant::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::$model::count();
     }
 }

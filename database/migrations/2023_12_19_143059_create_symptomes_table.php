@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->boolean('is_visible')->default(false);
+            $table->boolean('is_visible')->default(true);
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

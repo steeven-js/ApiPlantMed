@@ -18,7 +18,7 @@ class UtilisationsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('value')
+                Forms\Components\Textarea::make('value')
                     ->label('Utilisation')
                     ->required()
                     ->maxLength(255),

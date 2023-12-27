@@ -11,7 +11,7 @@ class PlantController extends Controller
     public function index()
     {
         // On récupère tous les plants
-        $plants = Plant::all();
+        $plants = Plant::with('media')->get();
 
         // On retourne les informations des plants en JSON
         return response()->json($plants);

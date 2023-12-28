@@ -20,6 +20,8 @@ class SymptomeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-bolt';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     protected static ?string $navigationLabel = 'Symptômes';
 
     protected static ?string $modelLabel = 'Symptômes';
@@ -31,28 +33,6 @@ class SymptomeResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            // ->schema([
-            //     Forms\Components\Group::make()
-            //         ->schema([
-            //             Forms\Components\Section::make('Informations')
-            //                 ->schema([
-            //                     Forms\Components\TextInput::make('name')
-            //                         ->required()
-            //                         ->maxLength(191),
-            //                     Forms\Components\TextInput::make('slug')
-            //                         ->required()
-            //                         ->maxLength(191),
-            //                     Forms\Components\Toggle::make('is_visible')
-            //                         ->required(),
-            //                     Forms\Components\Select::make('symptomes')
-            //                         ->relationship('plants', 'name')
-            //                         ->multiple()
-            //                         ->required(),
-            //                 ])->description('Les symptômes sont les signes visibles d\'une maladie ou d\'un parasite')
-            //                 ->columnSpan(['lg' => 2]),
-            //         ]),
-            // ])->columns(1);
-
             ->schema([
                 Forms\Components\Group::make()
                     ->schema([

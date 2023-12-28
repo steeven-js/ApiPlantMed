@@ -21,6 +21,8 @@ class PlantResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-heart';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     protected static ?string $navigationLabel = 'Plantes médicinales';
 
     protected static ?string $modelLabel = 'Plantes médicinales';

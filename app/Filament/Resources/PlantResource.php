@@ -89,9 +89,9 @@ class PlantResource extends Resource
                                 Forms\Components\TextInput::make('genre'),
 
                                 Forms\Components\Select::make('symptomes')
-                                ->relationship('symptomes', 'name')
-                                ->multiple()
-                                ->required(),
+                                    ->relationship('symptomes', 'name')
+                                    ->multiple()
+                                    ->required(),
                             ])
                             ->description('Informations scientifiques sur la plante'),
 
@@ -161,5 +161,10 @@ class PlantResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         return static::$model::count();
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 }

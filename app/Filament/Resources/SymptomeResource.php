@@ -146,4 +146,9 @@ class SymptomeResource extends Resource
     {
         return static::$model::where('is_visible', true)->count();
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

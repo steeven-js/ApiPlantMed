@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateSymptome extends CreateRecord
 {
     protected static string $resource = SymptomeResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

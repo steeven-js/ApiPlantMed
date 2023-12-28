@@ -61,6 +61,15 @@ class SymptomeResource extends Resource
                                     ->columnSpan('full'),
                             ])
                             ->columns(2),
+
+                        Forms\Components\Section::make('Icone symptôme')
+                            ->schema([
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('media')
+                                    ->collection('symptome-images')
+                                    ->hiddenLabel(),
+                            ])
+                            ->collapsible()
+
                     ])
                     ->columnSpan(['lg' => 2]),
 
@@ -92,6 +101,9 @@ class SymptomeResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('icone-image')
+                    ->label('Image')
+                    ->collection('symptome-images'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nom')
                     ->searchable(),

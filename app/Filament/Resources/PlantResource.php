@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PlantResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PlantResource\RelationManagers;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class PlantResource extends Resource
 {
@@ -70,7 +69,7 @@ class PlantResource extends Resource
 
                         Forms\Components\Section::make('Images')
                             ->schema([
-                                SpatieMediaLibraryFileUpload::make('media')
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('media')
                                     ->collection('plant-images')
                                     ->multiple()
                                     ->maxFiles(5)

@@ -47,4 +47,11 @@ class Plant extends Model implements HasMedia
     {
         return $this->belongsToMany(Symptome::class, 'symptome_plants', 'plant_id', 'symptome_id')->withTimestamps();
     }
+
+        // Define the media relationship
+        public function registerMediaCollections(): void
+        {
+            // You can customize the collection name and the disk as needed
+            $this->addMediaCollection('plant-images')->singleFile();
+        }
 }

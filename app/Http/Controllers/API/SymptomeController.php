@@ -18,7 +18,13 @@ class SymptomeController extends Controller
     public function show(Symptome $symptome)
     {
         // Eager load the 'plants' relationship and count the number of related plants
-        $symptome = Symptome::withCount('plants')->with('plants', 'media')->find($symptome->id);
+        $symptome = Symptome::withCount('plants')->with('plants')->find($symptome->id);
+
+        // Load media for each plant and append it to the response
+        $symptome->plants->each(function ($plant) {
+            $media = $plant->getMedia('plant-images');
+            $plant->media = $media;
+        });
 
         return response()->json($symptome);
     }

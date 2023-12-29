@@ -20,8 +20,16 @@ class Symptome extends Model implements HasMedia
         'is_visible',
     ];
 
+    // Define the many-to-many relationship with plants
     public function plants(): BelongsToMany
     {
         return $this->belongsToMany(Plant::class, 'symptome_plants', 'symptome_id', 'plant_id')->withTimestamps();
+    }
+
+    // Define the media relationship
+    public function registerMediaCollections(): void
+    {
+        // You can customize the collection name and the disk as needed
+        $this->addMediaCollection('symptome_media')->singleFile();
     }
 }

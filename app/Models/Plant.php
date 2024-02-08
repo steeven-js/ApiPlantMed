@@ -26,6 +26,7 @@ class Plant extends Model implements HasMedia
         'genre',
         'description',
         'habitat',
+        'isActive',
     ];
 
     public function proprietes()

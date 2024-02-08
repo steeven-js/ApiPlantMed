@@ -79,8 +79,16 @@ class PlantResource extends Resource
                     ])
                     ->columnSpan(['lg' => 2]),
 
-                Forms\Components\Group::make()
+                    Forms\Components\Group::make()
                     ->schema([
+                        Forms\Components\Section::make('Status de la plante')
+                            ->schema([
+                                Forms\Components\Toggle::make('isActive')
+                                    ->label('Visible')
+                                    ->helperText('Activer ou désactiver la plante pour la rendre visible ou non sur l\'application')
+                                    ->default(false),
+                            ]),
+
                         Forms\Components\Section::make('Information scientifiques')
                             ->schema([
                                 Forms\Components\TextInput::make('nscient'),
@@ -91,9 +99,7 @@ class PlantResource extends Resource
                                     ->relationship('symptomes', 'name')
                                     ->multiple()
                                     ->required(),
-                            ])
-                            ->description('Informations scientifiques sur la plante'),
-
+                            ])->description('Informations scientifiques sur la plante'),
                     ])
                     ->columnSpan(['lg' => 1]),
             ])

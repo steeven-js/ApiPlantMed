@@ -112,8 +112,7 @@ class SymptomeResource extends Resource
                     ->searchable(),
                     Tables\Columns\ToggleColumn::make('is_visible')
                     ->label('Visible')
-                    ->toggleable()
-                    ->boolean(),
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()

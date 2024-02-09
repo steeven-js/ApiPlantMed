@@ -110,8 +110,9 @@ class SymptomeResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('is_visible')
+                    Tables\Columns\ToggleColumn::make('is_visible')
                     ->label('Visible')
+                    ->toggleable()
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Créé le')

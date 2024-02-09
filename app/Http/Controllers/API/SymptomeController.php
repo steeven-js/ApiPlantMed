@@ -10,7 +10,7 @@ class SymptomeController extends Controller
 {
     public function index()
     {
-        $symptomes = Symptome::with('plants', 'media')->get();
+        $symptomes = Symptome::with('plants', 'media')->where('is_visible', 1)->get();
 
         return response()->json($symptomes);
     }
@@ -18,7 +18,13 @@ class SymptomeController extends Controller
     public function show(Symptome $symptome)
     {
         // Eager load the 'plants' relationship and count the number of related plants
-        $symptome = Symptome::withCount('plants')->with('plants')->find($symptome->id);
+        $symptome = Symptome::withCount(['plants' => function ($query) {
+            $query->where('isActive', 1);
+        }])->with(['plants' => function ($query) {
+            $query->where('isActive', 1);
+        }])
+        ->where('is_visible', 1)
+        ->find($symptome->id);
 
         // Load media for each plant and append it to the response
         $symptome->plants->each(function ($plant) {

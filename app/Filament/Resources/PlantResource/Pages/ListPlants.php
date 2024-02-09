@@ -5,6 +5,7 @@ namespace App\Filament\Resources\PlantResource\Pages;
 use App\Filament\Resources\PlantResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Components\Tab;
 
 class ListPlants extends ListRecords
 {
@@ -14,6 +15,15 @@ class ListPlants extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+        ];
+    }
+
+    public function getTabs(): array
+    {
+        return [
+            null => Tab::make('All'),
+            'Visible' => Tab::make()->query(fn ($query) => $query->where('isActive', true)),
+            'Non Visible' => Tab::make()->query(fn ($query) => $query->where('isActive', false)),
         ];
     }
 }

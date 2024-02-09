@@ -79,7 +79,7 @@ class PlantResource extends Resource
                     ])
                     ->columnSpan(['lg' => 2]),
 
-                    Forms\Components\Group::make()
+                Forms\Components\Group::make()
                     ->schema([
                         Forms\Components\Section::make('Status de la plante')
                             ->schema([
@@ -117,6 +117,10 @@ class PlantResource extends Resource
                     ->collection('plant-images'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\ToggleColumn::make('isActive')
+                    ->sortable()
+                    ->toggleable()
+                    ->label('Visible'),
                 Tables\Columns\TextColumn::make('symptomes.name')
                     ->label('Symptomes')
                     ->listWithLineBreaks()
@@ -149,8 +153,8 @@ class PlantResource extends Resource
     {
         return [
             RelationManagers\ProprietesRelationManager::class,
-            RelationManagers\PrecautionsRelationManager::class,
             RelationManagers\UtilisationsRelationManager::class,
+            RelationManagers\PrecautionsRelationManager::class,
         ];
     }
 

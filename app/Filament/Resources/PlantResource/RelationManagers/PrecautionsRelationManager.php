@@ -21,7 +21,7 @@ class PrecautionsRelationManager extends RelationManager
                 Forms\Components\Textarea::make('value')
                     ->label('Précaution')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(500),
             ])->columns(1);
     }
 

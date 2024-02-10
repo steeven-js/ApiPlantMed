@@ -31,7 +31,8 @@ class ProprietesRelationManager extends RelationManager
             ->recordTitleAttribute('value')
             ->columns([
                 Tables\Columns\TextColumn::make('value')
-                ->label('Propriété'),
+                ->label('Propriété')
+                ->limit(80),
             ])
             ->filters([
                 //

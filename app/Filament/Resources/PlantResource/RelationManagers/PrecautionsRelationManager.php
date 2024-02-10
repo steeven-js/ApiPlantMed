@@ -31,7 +31,8 @@ class PrecautionsRelationManager extends RelationManager
             ->recordTitleAttribute('value')
             ->columns([
                 Tables\Columns\TextColumn::make('value')
-                ->label('Précaution'),
+                ->label('Précaution')
+                ->limit(80),
             ])
             ->filters([
                 //

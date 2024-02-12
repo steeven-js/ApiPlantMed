@@ -58,26 +58,32 @@ class PlantResource extends Resource
                                     ->unique(Plant::class, 'slug', ignoreRecord: true),
 
                                 Forms\Components\Textarea::make('description')
+                                    ->label('Description')
                                     ->rows(10)
                                     ->cols(20),
 
                                 Forms\Components\Textarea::make('habitat')
+                                    ->label('Habitat')
                                     ->rows(5)
                                     ->cols(10),
 
                                 Forms\Components\Textarea::make('propriete')
+                                    ->label('Propriétés')
                                     ->rows(5)
                                     ->cols(10),
 
                                 Forms\Components\Textarea::make('usageInterne')
+                                    ->label('Usage interne')
                                     ->rows(5)
                                     ->cols(10),
 
                                 Forms\Components\Textarea::make('usageExterne')
+                                    ->label('Usage externe')
                                     ->rows(5)
                                     ->cols(10),
 
                                 Forms\Components\Textarea::make('precaution')
+                                    ->label('Précautions')
                                     ->rows(5)
                                     ->cols(10),
 
@@ -169,9 +175,7 @@ class PlantResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ProprietesRelationManager::class,
-            RelationManagers\UtilisationsRelationManager::class,
-            RelationManagers\PrecautionsRelationManager::class,
+            //
         ];
     }
 

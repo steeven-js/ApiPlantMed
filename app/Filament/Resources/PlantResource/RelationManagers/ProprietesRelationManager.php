@@ -20,8 +20,7 @@ class ProprietesRelationManager extends RelationManager
             ->schema([
                 Forms\Components\Textarea::make('value')
                     ->label('Propriété')
-                    ->required()
-                    ->maxLength(500),
+                    ->required(),
             ])->columns(1);
     }
 

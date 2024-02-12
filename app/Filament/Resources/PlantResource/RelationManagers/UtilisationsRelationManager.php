@@ -20,8 +20,7 @@ class UtilisationsRelationManager extends RelationManager
             ->schema([
                 Forms\Components\Textarea::make('value')
                     ->label('Utilisation')
-                    ->required()
-                    ->maxLength(500),
+                    ->required(),
                 Forms\Components\Select::make('type')
                     ->options([
                         'interne' => 'Interne',

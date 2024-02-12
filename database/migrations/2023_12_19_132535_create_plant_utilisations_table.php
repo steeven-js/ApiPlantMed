@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('plant_id')->constrained()->onDelete('cascade');
             $table->enum('type', ['interne', 'externe'])->nullable();
-            $table->string('value');
+            $table->longText('value');
             $table->timestamps();
         });
     }

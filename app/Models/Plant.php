@@ -26,6 +26,10 @@ class Plant extends Model implements HasMedia
         'genre',
         'description',
         'habitat',
+        'propriete',
+        'precaution',
+        'usageInterne',
+        'usageExterne',
         'isActive',
     ];
 

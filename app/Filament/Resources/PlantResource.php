@@ -64,6 +64,23 @@ class PlantResource extends Resource
                                 Forms\Components\Textarea::make('habitat')
                                     ->rows(5)
                                     ->cols(10),
+
+                                Forms\Components\Textarea::make('propriete')
+                                    ->rows(5)
+                                    ->cols(10),
+
+                                Forms\Components\Textarea::make('usageInterne')
+                                    ->rows(5)
+                                    ->cols(10),
+
+                                Forms\Components\Textarea::make('usageExterne')
+                                    ->rows(5)
+                                    ->cols(10),
+
+                                Forms\Components\Textarea::make('precaution')
+                                    ->rows(5)
+                                    ->cols(10),
+
                             ])
                             ->description('Informations générales sur la plante'),
 

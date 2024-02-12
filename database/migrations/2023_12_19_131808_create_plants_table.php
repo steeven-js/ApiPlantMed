@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('genre')->nullable();
             $table->longText('description')->nullable();
             $table->longText('habitat')->nullable();
+            $table->longText('propriete')->nullable();
+            $table->longText('precaution')->nullable();
+            $table->longText('usageInterne')->nullable();
+            $table->longText('usageExterne')->nullable();
             $table->timestamps();
         });
     }

@@ -14,13 +14,17 @@ class ProprietesRelationManager extends RelationManager
 {
     protected static string $relationship = 'proprietes';
 
+    protected static ?string $recordTitleAttribute = 'plant_id.name';
+
     public function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Textarea::make('value')
                     ->label('Propriété')
-                    ->required(),
+                    ->required()
+                    ->rows(20)
+                    ->cols(20),
             ])->columns(1);
     }
 
@@ -30,8 +34,8 @@ class ProprietesRelationManager extends RelationManager
             ->recordTitleAttribute('value')
             ->columns([
                 Tables\Columns\TextColumn::make('value')
-                ->label('Propriété')
-                ->limit(80),
+                    ->label('Propriété')
+                    ->limit(80),
             ])
             ->filters([
                 //

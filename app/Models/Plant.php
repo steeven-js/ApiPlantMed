@@ -3,9 +3,6 @@
 namespace App\Models;
 
 use App\Models\Symptome;
-use App\Models\PlantPropriete;
-use App\Models\PlantPrecaution;
-use App\Models\PlantUtilisation;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -32,21 +29,6 @@ class Plant extends Model implements HasMedia
         'usageExterne',
         'isActive',
     ];
-
-    public function proprietes()
-    {
-        return $this->hasMany(PlantPropriete::class);
-    }
-
-    public function precautions()
-    {
-        return $this->hasMany(PlantPrecaution::class);
-    }
-
-    public function utilisations()
-    {
-        return $this->hasMany(PlantUtilisation::class);
-    }
 
     public function symptomes(): BelongsToMany
     {

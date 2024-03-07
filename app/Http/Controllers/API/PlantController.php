@@ -22,7 +22,7 @@ class PlantController extends Controller
     public function show(Plant $plant)
     {
         // Je récupère le plant avec ses informations
-        $plant = Plant::with('proprietes', 'precautions', 'utilisations', 'precautions', 'media')
+        $plant = Plant::with('media')
         ->where('isActive', 1)
         ->find($plant->id);
 

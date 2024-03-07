@@ -15,18 +15,23 @@ class PlantController extends Controller
         ->where('isActive', 1)
         ->get();
 
+        dd($plants);
+
         // On retourne les informations des plants en JSON
         return response()->json($plants);
     }
 
-    public function show(Plant $plant)
+    public function show(Symptome $symptome)
     {
-        // Je récupère le plant avec ses informations
-        $plant = Plant::with('media')
-        ->where('isActive', 1)
-        ->find($plant->id);
+        // Eager load the 'plants' relationship
+        $symptome = Symptome::with('plants')->where('isActive', 1)->find($symptome->id);
 
-        // Je retourne le plant en JSON
-        return response()->json($plant);
+        // Check if $symptome is null, meaning the Symptome was not found
+        if (!$symptome) {
+            return response()->json(['message' => 'Symptome not found'], 404);
+        }
+
+        return response()->json($symptome);
     }
+
 }

@@ -11,31 +11,16 @@ use App\Http\Controllers\API\PlantWebSiteController;
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Register API routes for the application. These routes are loaded by the
-| RouteServiceProvider and assigned to the "api" middleware group.
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
 |
 */
 
-// Authentication Middleware
-Route::middleware('auth:sanctum')->group(function () {
-    // Protected Routes
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
-    // API Resource Routes
-    // Route::apiResource("plants", PlantController::class);
-    // Route::apiResource("plantsWebSite", PlantWebSiteController::class);
-
-    // Route::apiResource("symptoms", SymptomeController::class);
-});
-
-// Public Routes (no authentication required)
-Route::get('/public-endpoint', function () {
-    return response()->json(['message' => 'This is a public endpoint. No authentication required.']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
 Route::apiResource("plants", PlantController::class);
+Route::apiResource("symptomes", SymptomeController::class);
 Route::apiResource("plantsWebSite", PlantWebSiteController::class);
-
-Route::apiResource("symptoms", SymptomeController::class);

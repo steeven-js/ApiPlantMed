@@ -23,6 +23,7 @@ class SymptomeController extends Controller
         }])->with(['plants' => function ($query) {
             $query->where('isActive', 1);
         }])
+        ->with('media')
         ->where('is_visible', 1)
         ->find($symptome->id);
 

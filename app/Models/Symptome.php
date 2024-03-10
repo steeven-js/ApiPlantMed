@@ -17,6 +17,7 @@ class Symptome extends Model implements HasMedia
     protected $fillable = [
         'name',
         'slug',
+        'description',
         'is_visible',
     ];
 

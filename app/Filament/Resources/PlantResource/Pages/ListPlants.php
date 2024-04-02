@@ -24,6 +24,10 @@ class ListPlants extends ListRecords
             null => Tab::make('All'),
             'Visible' => Tab::make()->query(fn ($query) => $query->where('isActive', true)),
             'Non Visible' => Tab::make()->query(fn ($query) => $query->where('isActive', false)),
+            'Most Popular' => Tab::make()->query(fn ($query) => $query->where('mostPopular', true)),
+            'Best Seller' => Tab::make()->query(fn ($query) => $query->where('bestSeller', true)),
+            'New Arrivals' => Tab::make()->query(fn ($query) => $query->where('newArrivals', true)),
+            'Recently Viewed' => Tab::make()->query(fn ($query) => $query->where('recentlyViewed', true)),
         ];
     }
 }

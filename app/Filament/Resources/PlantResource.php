@@ -187,6 +187,22 @@ class PlantResource extends Resource
                     ->sortable()
                     ->toggleable()
                     ->label('Visible'),
+                Tables\Columns\ToggleColumn::make('mostPopular')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->label('Populaire'),
+                Tables\Columns\ToggleColumn::make('bestSeller')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->label('Meilleure vente'),
+                Tables\Columns\ToggleColumn::make('newArrivals')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->label('Nouveautés'),
+                Tables\Columns\ToggleColumn::make('recentlyViewed')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->label('Récemment consulté'),
                 Tables\Columns\TextColumn::make('symptomes.name')
                     ->label('Symptomes')
                     ->listWithLineBreaks()

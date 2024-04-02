@@ -107,10 +107,12 @@ class SymptomeResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nom')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->label('Slug')
-                    ->searchable(),
-                    Tables\Columns\ToggleColumn::make('is_visible')
+                Tables\Columns\TextColumn::make('plants.name')
+                    ->label('plantes associées')
+                    ->listWithLineBreaks()
+                    ->limitList(2)
+                    ->expandableLimitedList(),
+                Tables\Columns\ToggleColumn::make('is_visible')
                     ->label('Visible')
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')

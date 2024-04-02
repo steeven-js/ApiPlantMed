@@ -31,22 +31,11 @@ class Plant extends Model implements HasMedia
         'usageInterne',
         'usageExterne',
         'isActive',
+        'mostPopular',
+        'bestSeller',
+        'newArrivals',
+        'recentlyViewed',
     ];
-
-    public function proprietes()
-    {
-        return $this->hasMany(PlantPropriete::class);
-    }
-
-    public function precautions()
-    {
-        return $this->hasMany(PlantPrecaution::class);
-    }
-
-    public function utilisations()
-    {
-        return $this->hasMany(PlantUtilisation::class);
-    }
 
     public function symptomes(): BelongsToMany
     {

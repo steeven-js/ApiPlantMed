@@ -123,6 +123,26 @@ class PlantResource extends Resource
                                     ->multiple()
                                     ->required(),
                             ])->description('Informations scientifiques sur la plante'),
+
+                        Forms\Components\Section::make('Palmarès')
+                            ->schema([
+                                Forms\Components\Toggle::make('mostPopular')
+                                    ->label('Populaire')
+                                    ->helperText('Marquer la plante comme étant populaire')
+                                    ->default(false),
+                                Forms\Components\Toggle::make('bestSeller')
+                                    ->label('Meilleure vente')
+                                    ->helperText('Marquer la plante comme étant la meilleure vente')
+                                    ->default(false),
+                                Forms\Components\Toggle::make('newArrivals')
+                                    ->label('Nouveautés')
+                                    ->helperText('Marquer la plante comme étant une nouveauté')
+                                    ->default(false),
+                                Forms\Components\Toggle::make('recentlyViewed')
+                                    ->label('Récemment consulté')
+                                    ->helperText('Marquer la plante comme étant récemment consultée')
+                                    ->default(false),
+                            ]),
                     ])
                     ->columnSpan(['lg' => 1]),
             ])

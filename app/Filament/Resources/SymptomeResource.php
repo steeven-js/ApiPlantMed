@@ -135,7 +135,7 @@ class SymptomeResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->description('Les symptômes sont les signes visibles d\'une maladie ou d\'un parasite sur une plante.');
+            ->description('Les symptômes sont les signes visibles d\'une maladie ou d\'un parasite sur l\'organisme.');
     }
 
     public static function getRelations(): array

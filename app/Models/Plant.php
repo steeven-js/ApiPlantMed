@@ -3,9 +3,6 @@
 namespace App\Models;
 
 use App\Models\Symptome;
-use App\Models\PlantPropriete;
-use App\Models\PlantPrecaution;
-use App\Models\PlantUtilisation;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;

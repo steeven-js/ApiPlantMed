@@ -56,39 +56,17 @@ class PlantResource extends Resource
                                     ->required()
                                     ->maxLength(255)
                                     ->unique(Plant::class, 'slug', ignoreRecord: true),
-
-                                Forms\Components\Textarea::make('description')
-                                    ->label('Description')
-                                    ->rows(10)
-                                    ->cols(20),
-
-                                Forms\Components\Textarea::make('habitat')
-                                    ->label('Habitat')
-                                    ->rows(5)
-                                    ->cols(10),
-
-                                Forms\Components\Textarea::make('propriete')
-                                    ->label('Propriétés')
-                                    ->rows(5)
-                                    ->cols(10),
-
-                                Forms\Components\Textarea::make('usageInterne')
-                                    ->label('Usage interne')
-                                    ->rows(5)
-                                    ->cols(10),
-
-                                Forms\Components\Textarea::make('usageExterne')
-                                    ->label('Usage externe')
-                                    ->rows(5)
-                                    ->cols(10),
-
-                                Forms\Components\Textarea::make('precaution')
-                                    ->label('Précautions')
-                                    ->rows(5)
-                                    ->cols(10),
-
                             ])
                             ->description('Informations générales sur la plante'),
+
+                        Forms\Components\Section::make('description')
+                            ->schema([
+                                Forms\Components\Textarea::make('description')
+                                    ->label('description')
+                                    ->rows(5)
+                                    ->cols(10),
+                            ])
+                            ->collapsible(),
 
                         Forms\Components\Section::make('Images')
                             ->schema([
@@ -98,7 +76,52 @@ class PlantResource extends Resource
                                     ->maxFiles(5)
                                     ->hiddenLabel(),
                             ])
-                            ->collapsible()
+                            ->collapsible(),
+
+                        Forms\Components\Section::make('habitat')
+                            ->schema([
+                                Forms\Components\Textarea::make('habitat')
+                                    ->label('Habitat')
+                                    ->rows(5)
+                                    ->cols(10),
+                            ])
+                            ->collapsible(),
+
+                        Forms\Components\Section::make('propriete')
+                            ->schema([
+                                Forms\Components\Textarea::make('propriete')
+                                    ->label('propriete')
+                                    ->rows(5)
+                                    ->cols(10),
+                            ])
+                            ->collapsible(),
+
+                        Forms\Components\Section::make('usageInterne')
+                            ->schema([
+                                Forms\Components\Textarea::make('usageInterne')
+                                    ->label('usageInterne')
+                                    ->rows(5)
+                                    ->cols(10),
+                            ])
+                            ->collapsible(),
+
+                        Forms\Components\Section::make('usageExterne')
+                            ->schema([
+                                Forms\Components\Textarea::make('usageExterne')
+                                    ->label('usageExterne')
+                                    ->rows(5)
+                                    ->cols(10),
+                            ])
+                            ->collapsible(),
+
+                        Forms\Components\Section::make('precaution')
+                            ->schema([
+                                Forms\Components\Textarea::make('precaution')
+                                    ->label('precaution')
+                                    ->rows(5)
+                                    ->cols(10),
+                            ])
+                            ->collapsible(),
                     ])
                     ->columnSpan(['lg' => 2]),
 

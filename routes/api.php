@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PlantController;
 use App\Http\Controllers\API\SymptomeController;
+use App\Http\Controllers\API\PlantWebSiteController;
+use App\Http\Controllers\API\SymptomWebSiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource("plants", PlantController::class);
 Route::apiResource("symptomes", SymptomeController::class);
+Route::apiResource("plantsWebSite", PlantWebSiteController::class);
+Route::apiResource("symptomsWebSite", SymptomWebSiteController::class);

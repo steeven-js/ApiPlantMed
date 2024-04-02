@@ -10,7 +10,7 @@ class SymptomeController extends Controller
 {
     public function index()
     {
-        $symptomes = Symptome::with('plants', 'media')->where('is_visible', 1)->get();
+        $symptomes = Symptome::with('media','plants.media')->where('is_visible', 1)->get();
 
         return response()->json($symptomes);
     }
@@ -23,6 +23,7 @@ class SymptomeController extends Controller
         }])->with(['plants' => function ($query) {
             $query->where('isActive', 1);
         }])
+        ->with('media')
         ->where('is_visible', 1)
         ->find($symptome->id);
 

@@ -2,29 +2,30 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Plant;
+use App\Models\Symptome;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PlantController extends Controller
+class SymptomWebSiteController extends Controller
 {
     public function index()
     {
-        // On récupère tous les plants
-        $plants = Plant::with('media')
-        ->where('isActive', 1)
-        ->get();
+        // On récupère tous les plants avec pagination
+        $plants = Symptome::with('media')
+            ->where('is_visible', 1)
+            ->paginate(12);
 
         // On retourne les informations des plants en JSON
         return response()->json($plants);
     }
 
-    public function show(Plant $plant)
+
+    public function show(Symptome $plant)
     {
         // Je récupère le plant avec ses informations
-        $plant = Plant::with('media')
-        ->where('isActive', 1)
-        ->find($plant->id);
+        $plant = Symptome::with('media')
+            ->where('is_visible', 1)
+            ->find($plant->id);
 
         // Je retourne le plant en JSON
         return response()->json($plant);

@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
+use App\Filament\Exports\PlantExporter;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PlantResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -219,6 +220,10 @@ class PlantResource extends Resource
             ])
             ->filters([
                 //
+            ])
+            ->headerActions([
+                Tables\Actions\ExportAction::make()
+                    ->exporter(PlantExporter::class)
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -123,6 +123,15 @@ class PlantResource extends Resource
                                     ->cols(10),
                             ])
                             ->collapsible(),
+
+                        Forms\Components\Section::make('source')
+                            ->schema([
+                                Forms\Components\Textarea::make('source')
+                                    ->label('Source des informations')
+                                    ->rows(5)
+                                    ->cols(10),
+                            ])
+                            ->collapsible(),
                     ])
                     ->columnSpan(['lg' => 2]),
 

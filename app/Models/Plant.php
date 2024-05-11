@@ -32,6 +32,7 @@ class Plant extends Model implements HasMedia
         'bestSeller',
         'newArrivals',
         'recentlyViewed',
+        'source',
     ];
 
     public function symptomes(): BelongsToMany

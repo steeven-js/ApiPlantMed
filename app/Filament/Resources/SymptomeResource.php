@@ -60,6 +60,15 @@ class SymptomeResource extends Resource
 
                                 Forms\Components\MarkdownEditor::make('description')
                                     ->columnSpan('full'),
+
+                                Forms\Components\Section::make('source')
+                                    ->schema([
+                                        Forms\Components\Textarea::make('source')
+                                            ->label('Source des informations')
+                                            ->rows(1)
+                                            ->cols(10),
+                                    ])
+                                    ->collapsible(),
                             ])
                             ->columns(2),
 

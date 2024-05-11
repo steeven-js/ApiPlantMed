@@ -19,6 +19,7 @@ class Symptome extends Model implements HasMedia
         'slug',
         'description',
         'is_visible',
+        'source',
     ];
 
     // Define the many-to-many relationship with plants

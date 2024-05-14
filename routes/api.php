@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource("plants", PlantController::class);
-Route::apiResource("symptomes", SymptomeController::class);
-Route::apiResource("plantsWebSite", PlantWebSiteController::class);
-Route::apiResource("symptomsWebSite", SymptomWebSiteController::class);
+Route::apiResource("plants", PlantController::class)->middleware('throttle:api_rate_limit,60,1'); // Limite de 60 requêtes par minute pour toutes les routes de PlantController
+Route::apiResource("symptomes", SymptomeController::class)->middleware('throttle:api_rate_limit,60,1'); // Limite de 60 requêtes par minute pour toutes les routes de SymptomeController
+Route::apiResource("plantsWebSite", PlantWebSiteController::class)->middleware('throttle:api_rate_limit,60,1'); // Limite de 60 requêtes par minute pour toutes les routes de PlantWebSiteController
+Route::apiResource("symptomsWebSite", SymptomWebSiteController::class)->middleware('throttle:api_rate_limit,60,1'); // Limite de 60 requêtes par minute pour toutes les routes de SymptomWebSiteController

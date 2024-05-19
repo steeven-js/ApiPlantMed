@@ -48,6 +48,10 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+            ->navigationGroups([
+                'Application',
+                'Marketing',
+            ])
             ->databaseNotifications()
             ->middleware([
                 EncryptCookies::class,

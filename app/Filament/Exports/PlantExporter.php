@@ -34,6 +34,7 @@ class PlantExporter extends Exporter
             ExportColumn::make('bestSeller'),
             ExportColumn::make('newArrivals'),
             ExportColumn::make('recentlyViewed'),
+            ExportColumn::make('source'),
         ];
     }
 
